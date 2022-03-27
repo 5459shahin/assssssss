@@ -5,7 +5,7 @@ import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
-    // const [products, setProducts] = useState([]);
+   
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
 
@@ -15,20 +15,20 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, [])
 
-    /*   Item Adedd Iart */
-    const handleAddToCart = (product) => {
+    
+    const addToCart = (product) => {
         if (cart.length === 4) {
-            alert("You can add only 4 flower");
+            alert("You can add only choose 4 product");
             return;
         }
         setCart([...cart, product]);
     }
 
-    const handleChooseAgain = () => {
+    const chooseAgain = () => {
         setCart([])
     }
 
-    const chooseOneForMeButton = () => {
+    const chooseBtn = () => {
         const arrayIndex = cart[Math.floor(Math.random() * cart.length)]
         setCart([arrayIndex]);
     }
@@ -40,7 +40,7 @@ const Shop = () => {
                 {
                     products.map(product => <Product
                         key={product.id}
-                        handleAddToCart={handleAddToCart}
+                        addToCart={addToCart}
                         product={product}
                     ></Product>)
                     
@@ -53,8 +53,8 @@ const Shop = () => {
                 {
                     cart.map(product => <Cart cart={product}></Cart>)
                 }
-                <button onClick={chooseOneForMeButton} className='order-btn'>Choose 1 For Me</button> <br />
-                <button onClick={handleChooseAgain} className='order-btn'>Choose Again</button>
+                <button onClick={chooseBtn} className='order-btn'>Choose 1 For Me</button> <br />
+                <button onClick={chooseAgain} className='order-btn'>Choose Again</button>
             </div>
         </div>
     );
